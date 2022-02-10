@@ -6,12 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,300;1,700&display=swap"
+        rel="stylesheet">
     <title>Meu primeiro site no GitHub Pages</title>
 </head>
 
 <body>
-    <h1>Eu sou um jovem programador aprendiz</h1>
-    <p>Essa é minha história...</p>
+    <header id="navbar">
+        <a href="#teste">sobre mim</a>
+        <a href="#">meus projetos</a>
+        <a href="#">contatos</a>
+    </header>
+    <section class="my-container">
+        <img src="/img/richard.jpg" alt="esse sou eu, minha foto">
+        <div class="description">
+            <h1>Richard Lima</h1>
+            <h3>Desenvolvedor Full-stack</h3>
+        </div>
+    </section>
+    <h2>Sobre mim</h2>
+    <section class="about-container">
+        <aside>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+        </aside>
+        <div class="skills-container">
+            minhas habilidades aqui
+        </div>
+    </section>
+    <h2 id="teste">Meus projetos</h2>
+    <div class="projects-container">
+        <div class="card">
+            <p class="title">Allcontece</p>
+            <p class="description">Loja virtual desenvolvida em node</p>
+        </div>
+        <div class="card">
+            <p class="title">pokedex</p>
+            <p class="description">Pokedex desenvolvida em python que consome uma API</p>
+        </div>
+        <div class="card">
+            <p class="title">Get a pet</p>
+            <p class="description">Sistema de adoção de pets desenvolvido em node</p>
+        </div>
+    </div>
+    <h2>Me mande um email</h2>
+    <p>Que tal me chamar pra uma call ou tomar um café?</p>
+    <form class="email-form" action="https://formspree.io/f/xyyoeqrb" method="POST">
+        <div class="form-control">
+            <label for="_replyto">Seu contato: </label>
+            <input type="email" name="_replyto">
+        </div>
+        <div class="form-control">
+            <label for="message">Mensagem: </label>
+            <textarea name="message"></textarea>
+        </div>
+        <input type="submit" value="Send">
+    </form>
+    <footer>
+        meus contatos
+    </footer>
 </body>
 
 </html>

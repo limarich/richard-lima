@@ -2,7 +2,68 @@
   padding: 0;
   box-sizing: border-box;
   margin: 0;
+  font-family: "Ubuntu", sans-serif;
 }
-h1 {
-  color: red;
-}  
+h2 {
+  font-style: italic;
+}
+.my-container {
+  height: 50vh;
+  width: 100%;
+  background: #818274;
+  display: flex;
+  /* justify-content: space-evenly; */
+  align-items: center;
+}
+.my-container img {
+  max-height: 95%;
+  scale: 0.5;
+  margin-left: 100px;
+}
+.my-container .description {
+  font-style: italic;
+  color: #f2f2f2;
+  font-size: 1.5em;
+  display: inline-block;
+  margin: 0 auto;
+}
+.about-container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  gap: 50px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.about-container aside {
+  font-size: 1.2em;
+}
+.projects-container {
+  width: 80%;
+  display: grid;
+  margin: 20px auto;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.projects-container .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 200px;
+  background-color: #506266;
+  color: #f2f2f2;
+  border: #fff solid 1px;
+  transition: 1.5s;
+  border-radius: 8px;
+}
+.projects-container .card .description {
+  display: none;
+}
+.projects-container .card:hover .description {
+  display: inline-block;
+}
+.projects-container .card:hover .title {
+  display: none;
+}
+.email-container {
+}

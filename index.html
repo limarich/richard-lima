@@ -10,66 +10,348 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,300;1,700&display=swap"
         rel="stylesheet">
-    <title>Meu primeiro site no GitHub Pages</title>
+    <script src="https://kit.fontawesome.com/50da2891be.js" crossorigin="anonymous"></script>
+    <title>Meu Portfólio </title>
 </head>
 
 <body>
     <header id="navbar">
-        <a href="#teste">sobre mim</a>
-        <a href="#">meus projetos</a>
-        <a href="#">contatos</a>
+        <a href="#me">sobre mim</a>
+        <a href="#projects">meus projetos</a>
+        <a href="#skills">minhas skills</a>
+        <a href="#contacts">contatos</a>
     </header>
     <section class="my-container">
-        <img src="/img/richard.jpg" alt="esse sou eu, minha foto">
+        <img src="/img/richard_2.png" alt="esse sou eu, minha foto">
         <div class="description">
-            <h1>Richard Lima</h1>
+            <h1>Richard Lima </h1>
             <h3>Desenvolvedor Full-stack</h3>
+            <i class="fa solid fa-laptop-code"></i>
+            <i class="fa solid fa-circle red-circle"></i>
+            <i class="fa solid fa-circle orange-circle"></i>
+            <i class="fa solid fa-circle blue-circle"></i>
+
         </div>
     </section>
-    <h2>Sobre mim</h2>
     <section class="about-container">
-        <aside>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-        </aside>
-        <div class="skills-container">
-            minhas habilidades aqui
+        <div class="about-me">
+            <h2 id="me"><i class="fa solid fa-code"></i> Sobre mim</h2>
+            <p>
+                Olá, me chamo Richard e tenho 20 anos. Atualmente estou cursando Engenharia de Computação, na UNIVASF em
+                Juazeiro. Sou uma pessoa cheia de energia e motivação para sempre estar aprendendo mais. Meu sonho é
+                construir algo que marque a vida das pessoas e uma curiosidade sobre mim é que gosto muito de esportes e
+                de
+                teatro.
+            </p>
+        </div>
+        <ul class="qualities-list">
+            <li><em>Proativo</em><span>Não gosto de ficar parado, é bem comum me ver tomando iniciativa</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+            <li><em>Curioso</em><span>Gosto de entender como as coisas são e como funcionam</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+            <li><em>Sempre aprendendo mais</em><span>Estudar para mim é como um hobby</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+            <li><em>Comunicativo</em><span>Eu diria que sou bem calmo na maior parte do tempo, mas gosto de
+                    conversar,
+                    as
+                    vezes até demais</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+            <li><em>Trabalho em equipe</em><span>É isso mesmo, dividir pra conquistar combina mais
+                    comigo</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+        </ul>
+
+    </section>
+    <section class="skills-container" id="skills">
+        <h2><i class="fa solid fa-code"></i> dev skills</h2>
+        <div class="skill-cards">
+            <div class="card">
+                <figure>
+                    <img src="/img/html5.svg" alt="Html">
+                    <figcaption>HTML5</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i> <i
+                                class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>3 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/css3.svg" alt="css">
+                    <figcaption>CSS3</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>3 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/javascript.svg" alt="javascript">
+                    <figcaption>javascript</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>3 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/nodejs.svg" alt="nodejs">
+                    <figcaption>nodejs</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>2 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/mysql.svg" alt="mysql">
+                    <figcaption>mysql</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle red-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>2 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/mongodb.svg" alt="mongodb">
+                    <figcaption>mongodb</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>2 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/python.svg" alt="python">
+                    <figcaption>python</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>3 anos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <figure>
+                    <img src="/img/c.svg" alt="c">
+                    <figcaption>c</figcaption>
+                </figure>
+                <div class="lvl-container">
+                    <div class="skill-lvl">
+                        <p>NÍVEL</p>
+                        <div class="skill-points">
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle orange-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                            <i class="fa solid fa-circle dark-blue-circle"></i>
+                        </div>
+                    </div>
+                    <div class="xp-lvl">
+                        <p>EXPERIÊNCIA</p>
+                        <p>3 anos</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <h2 id="teste">Meus projetos</h2>
-    <div class="projects-container">
-        <div class="card">
-            <p class="title">Allcontece</p>
-            <p class="description">Loja virtual desenvolvida em node</p>
+    <h2 id="projects"><i class="fa solid fa-code"></i> Meus projetos</h2>
+    <section class="projects-container">
+        <div class="card card-green">
+            <p class="title">Loja Allcontece</p>
+            <p class="description">Loja Virtual ainda em desenvolvimento</p>
+            <p class="keys">#node#mongodb</p>
         </div>
-        <div class="card">
+        <div class="card card-orange">
             <p class="title">pokedex</p>
-            <p class="description">Pokedex desenvolvida em python que consome uma API</p>
+            <p class="description">Pokedex desenvolvida em python que consome uma API <a
+                    href="https://github.com/limarich/MyPokedex" target="_blank">(Clique
+                    para saber
+                    mais)</a></p>
+            <p class="keys">#python</p>
         </div>
-        <div class="card">
+        <div class="card card-red">
             <p class="title">Get a pet</p>
-            <p class="description">Sistema de adoção de pets desenvolvido em node</p>
+            <p class="description">Plataforma de adoção de pets <a href="https://github.com/limarich/get-a-pet"
+                    target="_blank">(Clique para saber
+                    mais)</a></p>
+            <p class="keys">#node#react#mongodb</p>
         </div>
-    </div>
-    <h2>Me mande um email</h2>
-    <p>Que tal me chamar pra uma call ou tomar um café?</p>
-    <form class="email-form" action="https://formspree.io/f/xyyoeqrb" method="POST">
-        <div class="form-control">
-            <label for="_replyto">Seu contato: </label>
-            <input type="email" name="_replyto">
+        <div class="card card-green">
+            <p class="title">Login/Cadastro</p>
+            <p class="description">Sistema simples de autenticação e registro de dados <a
+                    href="https://github.com/limarich/CADASTROLOGIN" target="_blank">(Clique
+                    para saber
+                    mais)</a></p>
+            <p class="keys">#node#mysql</p>
         </div>
-        <div class="form-control">
-            <label for="message">Mensagem: </label>
-            <textarea name="message"></textarea>
+        <div class="card card-blue">
+            <p class="title">Instagram Clone</p>
+            <p class="description">Clone da interface do Instagram <a href="https://github.com/limarich/Instagram_clone"
+                    target="_blank">(Clique para saber
+                    mais)</a></p>
+            <p class="keys">#html#css#javascript</p>
         </div>
-        <input type="submit" value="Send">
-    </form>
-    <footer>
-        meus contatos
-    </footer>
+        <div class="card card-orange">
+            <p class="title">Calculator</p>
+            <p class="description">Calculadora desenvolvida para o navegador <a
+                    href="https://github.com/limarich/Calculator" target="_blank">(Clique para
+                    saber
+                    mais)</a></p>
+            <p class="keys">#html#css#javascript</p>
+        </div>
+        <div class="card card-red">
+            <p class="title">Space Game</p>
+            <p class="description">Game inspirado no jogo Space invaders <a
+                    href="https://github.com/limarich/Space-Game" target="_blank">(Clique para saber
+                    mais)</a></p>
+            <p class="keys">#python</p>
+        </div>
+        <div class="card card-green">
+            <p class="title">Netflix Clone</p>
+            <p class="description">Clone da interface inicial da Netflix <a
+                    href="https://github.com/limarich/Netflix_clone" target="_blank">(Clique para saber
+                    mais)</a></p>
+            <p class="keys">#html#css#javascript</p>
+        </div>
+        <div class="card card-blue">
+            <p class="title">My Todo List</p>
+            <p class="description">Lista de Tarefas para o navegador <a href="https://github.com/limarich/My-ToDo"
+                    target="_blank">(Clique para saber
+                    mais)</a></p>
+            <p class="keys">#node#mysql#javascript</p>
+        </div>
+    </section>
+    <section class="contacts" id="contacts">
+        <h2><i class="fa solid fa-envelope"></i> Me mande um email</h2>
+        <h4>Que tal me mandar uma mensagem?</h4>
+        <form class="email-form" action="https://formspree.io/f/xyyoeqrb" method="POST">
+            <p>Dados para contato</p>
+            <input type="email" name="_replyto" placeholder="insira seu email">
+            <textarea name="message" placeholder="escreva uma mensagem"></textarea>
+            <input type="submit" value="Enviar mensagem">
+        </form>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/richard-lima-488b451a8/" target="_blank"><i
+                    class="fa brands fa-linkedin"></i>Linkedin</a>
+            <a href="https://github.com/limarich/" target="_blank"><i class="fa brands fa-github-square"></i>Github</a>
+            <a href="https://drive.google.com/file/d/1LdBHZ7c6l8LLsBGLmqbddyc7JhWMTW3t/view?usp=sharing"
+                target="_blank"><i class="fa solid fa-file"></i>Currículo</a>
+        </div>
+    </section>
 </body>
 
 </html>

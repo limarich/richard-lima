@@ -71,7 +71,7 @@ h2:hover i {
   margin: 0 200px;
 }
 .my-container:hover {
-  background-image: url("https://c.tenor.com/KBe_nw4IL2QAAAAC/matrix-code.gif");
+  background-image: url("img/matrix-code.gif");
   background-size: cover;
 }
 .my-container .description h1 {

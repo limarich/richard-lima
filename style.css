@@ -301,3 +301,69 @@ h2:hover i {
     transform: rotate(0);
   }
 }
+@media (max-width: 600px) {
+  body {
+    max-width: 100vw;
+  }
+  /* NAVIGATION BAR */
+  #navbar .link {
+    font-size: 0.8em;
+  }
+  /* MY PRESENTATION */
+  .my-container {
+    position: relative;
+  }
+  .my-container img {
+    max-width: 200px;
+    margin: 0;
+  }
+  .my-container .description {
+    margin: 0;
+    font-size: 1em;
+  }
+  .my-container .description h1,
+  .my-container .description .icons {
+    margin: 15px;
+  }
+  .my-container .description h3 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  /* ABOUT ME */
+  .about-container .about-me p {
+    width: 90%;
+    font-size: 1em;
+  }
+  .qualities-list li {
+    margin: 10px auto;
+  }
+  /* SKILL CARDS */
+  .card {
+    width: 80vw;
+  }
+  .card .lvl-container {
+    margin-left: 20px;
+    font-size: 0.8em;
+  }
+  .skill-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  /* project cards */
+  .projects-container .card {
+    width: 90vw;
+    height: 200px;
+  }
+  /* CONTACT CONTAINER*/
+
+  .contacts .email-form input,
+  .contacts .email-form textarea {
+    width: 70vw;
+  }
+  .contact-links a span {
+    display: none;
+  }
+}

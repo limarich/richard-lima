@@ -1,3 +1,46 @@
+const softSkills = [
+  {
+    name: "Proativo",
+    description:
+      "Não gosto de ficar parado, é bem comum me ver tomando iniciativa",
+  },
+  {
+    name: "Curioso",
+    description: "Gosto de entender como as coisas são e como funcionam",
+  },
+  {
+    name: "Sempre aprendendo mais",
+    description: "Estudar para mim é como um hobby",
+  },
+  {
+    name: "Comunicativo",
+    description:
+      "Eu diria que sou bem calmo na maior parte do tempo, mas gosto de conversar,as vezes até demais",
+  },
+  {
+    name: "Trabalho em equipe",
+    description: "É isso mesmo, dividir pra conquistar combina mais comigo",
+  },
+];
+// LOAD SOFT SKILLS
+function loadSoftSkills() {
+  let div = document.getElementsByClassName("qualities-list")[0];
+  let card = "";
+  for (soft in softSkills) {
+    card += `
+    
+    <li><em>${softSkills[soft].name}</em><span>${softSkills[soft].description}</span>
+                <div class="terminal-icons">
+                    <i class="fa solid fa-circle red-circle"></i>
+                    <i class="fa solid fa-circle orange-circle"></i>
+                    <i class="fa solid fa-circle blue-circle"></i>
+                </div>
+            </li>
+    
+    `;
+  }
+  div.innerHTML = card;
+}
 // LIST OF SKILLS TO BE LOADED
 const skills = [
   {
@@ -51,9 +94,10 @@ const skills = [
 ];
 const colors = setColors();
 // LOAD MY SKILL CARDS
-let cards = "";
-for (skill in skills) {
-  cards += `
+function loadHardSkills() {
+  let skillcards = "";
+  for (skill in skills) {
+    skillcards += `
     <div class="card">
     <figure>
         <img src=${skills[skill].img} alt=${skills[skill].name}>
@@ -73,7 +117,8 @@ for (skill in skills) {
 </div>
     
     `;
-  document.getElementById("skill-cards").innerHTML = cards;
+    document.getElementById("skill-cards").innerHTML = skillcards;
+  }
 }
 // LOAD SKILLS LVLS
 function getLvl(lvl, index) {
@@ -106,3 +151,5 @@ function setColors() {
   }
   return colors;
 }
+loadSoftSkills();
+loadHardSkills();

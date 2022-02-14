@@ -34,9 +34,18 @@ h2:hover i {
   text-decoration: none;
   color: #f2f2f2;
   font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#navbar a:hover {
-  text-decoration: underline;
+#navbar a i {
+  opacity: 0;
+  transition: 0.5s;
+  font-size: 0.8em;
+}
+#navbar a:hover i {
+  transition: 0.5s;
+  opacity: 1;
 }
 /* TERMINAL CIRCLES */
 .orange-circle {
@@ -50,6 +59,9 @@ h2:hover i {
 }
 .red-circle {
   color: #ff3042;
+}
+.light-blue-circle {
+  color: #19e8d7;
 }
 /* SECTION WITH MY PRESENTATION */
 .my-container {

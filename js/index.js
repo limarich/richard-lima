@@ -98,7 +98,7 @@ function loadHardSkills() {
   let skillcards = "";
   for (skill in skills) {
     skillcards += `
-    <div class="card">
+    <div class="card" id="${skills[skill].name}">
     <figure>
         <img src=${skills[skill].img} alt=${skills[skill].name}>
         <figcaption>${skills[skill].name}</figcaption>

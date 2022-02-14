@@ -84,6 +84,26 @@ h2:hover i {
   font-size: 1.2em;
   margin: 10px 0;
 }
+.my-container .resume-skills {
+  display: flex;
+  flex-wrap: wrap;
+}
+.my-container .resume-skills a {
+  font-size: 0.6em;
+  margin: 0 0.1em;
+  padding: 0.2em 0.4em;
+  background-color: #2c2c2c;
+  color: #f2f2f2;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.my-container .resume-skills a:hover {
+  background-color: #f2f2f2;
+  color: #2c2c2c;
+  transition: 0.6s;
+}
 /* SECTION WITH MY INFO */
 .about-container {
   width: 100vw;

@@ -183,6 +183,11 @@ h2:hover i {
 .card figcaption {
   text-align: center;
 }
+.skill-points {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 .lvl-container {
   margin-left: 100px;
 }

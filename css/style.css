@@ -835,6 +835,7 @@
       cursor: default;
       position: relative;
       overflow: hidden;
+      will-change: transform;
       transition: color 0.25s, border-color 0.25s, transform 0.25s, background 0.25s;
     }
 
@@ -864,7 +865,6 @@
       color: var(--accent);
       border-color: rgba(0, 229, 255, 0.35);
       background: rgba(0, 229, 255, 0.04);
-      transform: translateY(-3px);
     }
 
     .skill-chip:hover::before {
@@ -1152,6 +1152,7 @@
       padding: 2rem;
       position: relative;
       overflow: hidden;
+      will-change: transform;
       transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
 
@@ -1182,7 +1183,6 @@
 
     .card:hover {
       border-color: rgba(0, 229, 255, 0.25);
-      transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
 
@@ -1235,12 +1235,12 @@
       padding: 1rem 1.2rem;
       background: var(--surface);
       border: 1px solid var(--border);
+      will-change: transform;
       transition: border-color 0.25s, transform 0.25s;
     }
 
     .cert-item:hover {
       border-color: rgba(0, 229, 255, 0.25);
-      transform: translateX(4px);
     }
 
     .cert-num {

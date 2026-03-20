@@ -396,3 +396,49 @@
 
     const statsSection = document.querySelector('.hero-stats');
     if (statsSection) statObserver.observe(statsSection);
+
+    // ── 3D TILT EFFECT ─────────────────────────────────────────
+    if (!isTouchDevice()) {
+      function initTilt(selector, { maxTilt = 10, scale = 1.03, perspective = 700 } = {}) {
+        document.querySelectorAll(selector).forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            el.style.transition = 'transform 0s, box-shadow 0.3s, border-color 0.25s, background 0.25s, color 0.25s';
+          });
+
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            el.style.transform = `perspective(${perspective}px) rotateX(${-y * maxTilt}deg) rotateY(${x * maxTilt}deg) scale3d(${scale},${scale},${scale})`;
+          });
+
+          el.addEventListener('mouseleave', () => {
+            el.style.transition = 'transform 0.5s ease, box-shadow 0.3s, border-color 0.25s, background 0.25s, color 0.25s';
+            el.style.transform = '';
+            setTimeout(() => { el.style.transition = ''; }, 500);
+          });
+        });
+      }
+
+      initTilt('.skill-chip', { maxTilt: 16, scale: 1.07, perspective: 450 });
+      initTilt('.card', { maxTilt: 6, scale: 1.02, perspective: 800 });
+      initTilt('.cert-item', { maxTilt: 5, scale: 1.02, perspective: 700 });
+
+      // Hero photo tilt (apply to photo-wrap to avoid conflicting with opacity animation on hero-photo)
+      const heroPhoto = document.querySelector('.hero-photo');
+      const photoWrap = document.querySelector('.photo-wrap');
+      if (heroPhoto && photoWrap) {
+        heroPhoto.addEventListener('mousemove', (e) => {
+          const rect = heroPhoto.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          photoWrap.style.transition = 'transform 0s';
+          photoWrap.style.transform = `perspective(900px) rotateX(${-y * 9}deg) rotateY(${x * 9}deg) scale3d(1.03,1.03,1.03)`;
+        });
+        heroPhoto.addEventListener('mouseleave', () => {
+          photoWrap.style.transition = 'transform 0.6s ease';
+          photoWrap.style.transform = '';
+          setTimeout(() => { photoWrap.style.transition = ''; }, 600);
+        });
+      }
+    }

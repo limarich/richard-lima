@@ -196,30 +196,109 @@
       }, 1600);
     });
 
+    // ── TOUCH DEVICE DETECTION ─────────────────────────────────
+    const isTouchDevice = () => window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
+
     // ── CUSTOM CURSOR ──────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
     const ring = document.getElementById('cursorRing');
     let mx = 0, my = 0, rx = 0, ry = 0;
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-    });
+    if (!isTouchDevice()) {
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top = my + 'px';
+      });
 
-    function animateRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
+      function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      document.querySelectorAll('a, button, .skill-chip, .card, .exp-item, .cert-item').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+      });
+    } else {
+      // Remove cursor elements on touch devices
+      dot && dot.remove();
+      ring && ring.remove();
     }
-    animateRing();
 
-    document.querySelectorAll('a, button, .skill-chip, .card, .exp-item, .cert-item').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+    // ── HAMBURGER MENU ─────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    function openMobileNav() {
+      mobileNav.classList.add('open');
+      hamburger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger && hamburger.addEventListener('click', openMobileNav);
+    mobileNavClose && mobileNavClose.addEventListener('click', closeMobileNav);
+
+    // Close on link click
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
     });
+
+    // Close on overlay backdrop click
+    mobileNav && mobileNav.addEventListener('click', (e) => {
+      if (e.target === mobileNav) closeMobileNav();
+    });
+
+    // Swipe right to open, swipe left to close
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      // Only register horizontal swipes (dx > dy threshold)
+      if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx > 60 && touchStartX < 40 && !mobileNav.classList.contains('open')) {
+        openMobileNav();
+      } else if (dx < -60 && mobileNav.classList.contains('open')) {
+        closeMobileNav();
+      }
+    }, { passive: true });
+
+    // ── TOUCH RIPPLE EFFECT ────────────────────────────────────
+    function addRipple(el) {
+      el.classList.add('ripple-container');
+      el.addEventListener('touchstart', function(e) {
+        const rect = this.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x - size/2}px;top:${y - size/2}px`;
+        this.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      }, { passive: true });
+    }
+
+    document.querySelectorAll('.btn-primary, .btn-secondary, .skill-chip, .card, .contact-link, .cert-item').forEach(addRipple);
 
     // ── SCROLL PROGRESS ────────────────────────────────────────
     const progressBar = document.getElementById('progress-bar');

@@ -30,6 +30,22 @@
     </div>
   </div>
 
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-mobile-overlay" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Fechar menu">&#x2715;</button>
+    <ul class="nav-links-mobile">
+      <li><a href="#about" data-i18n="nav.about" class="mobile-nav-link">Sobre</a></li>
+      <li><a href="#skills" data-i18n="nav.skills" class="mobile-nav-link">Skills</a></li>
+      <li><a href="#experience" data-i18n="nav.experience" class="mobile-nav-link">Experiência</a></li>
+      <li><a href="#education" data-i18n="nav.education" class="mobile-nav-link">Formação</a></li>
+      <li><a href="#contact" data-i18n="nav.contact" class="mobile-nav-link">Contato</a></li>
+    </ul>
+    <div class="lang-toggle mobile-lang-toggle">
+      <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav id="navbar">
     <div class="nav-logo">RL/</div>
@@ -40,14 +56,21 @@
       <li><a href="#education" data-i18n="nav.education">Formação</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contato</a></li>
     </ul>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('pt')">PT</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section id="hero" style="max-width:none;padding:9rem 5rem 4rem;position:relative;overflow:hidden">
+  <section id="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>

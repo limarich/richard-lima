@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Lima Ribeiro — Desenvolvedor Full Stack</title>
+
+  <!-- JSON-LD: útil no HTML, ignorado no PDF mas não prejudica -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Richard Lima Ribeiro",
+  "jobTitle": "Desenvolvedor Full Stack",
+  "telephone": "+55 22 981275474",
+  "email": "richardengenheirodacomputacao@gmail.com",
+  "url": "https://blwdevs.com.br",
+  "knowsAbout": [
+    "React", "Next.js", "React Native", "TypeScript", "Node.js", "NestJS",
+    "PostgreSQL", "Docker", "CI/CD", "Jest", "Playwright", "Python",
+    "Golang", "Flutter", "Redis", "WebSockets", "TDD", "Scrum"
+  ]
+}
+</script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+    /* ── TOKENS ── */
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5e5e5e;
+      --accent: #1a4731;
+      --accent-light: #e4ede8;
+      --border: #d4d0c8;
+      --tag-bg: #edeae3;
+      --sidebar-w: 212px;
+      --page-pad-h: 50px;
+      --page-pad-v: 54px;
+    }
+
+    /* ── RESET ── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ── BASE ── */
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.65;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── WRAPPER ── */
+    .page {
+      max-width: 870px;
+      margin: 36px auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: var(--page-pad-h) var(--page-pad-v);
+    }
+
+    /* ════════════════════════════
+     HEADER
+  ════════════════════════════ */
+    header {
+      border-bottom: 2.5px solid var(--accent);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 5px;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+
+    /* Contatos em linha — extração de texto plano correta no PDF */
+    address {
+      font-style: normal;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    address .sep {
+      margin: 0 8px;
+      color: var(--border);
+    }
+
+    address a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ════════════════════════════
+     LAYOUT — duas colunas
+     Coluna principal à esquerda,
+     sidebar à direita.
+     DOM order: main → aside
+     (ordem de leitura correta para ATS)
+  ════════════════════════════ */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-w);
+      gap: 0 32px;
+      align-items: start;
+    }
+
+    /* ── SEÇÕES GENÉRICAS ── */
+    section {
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent-light);
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* ════════════════════════════
+     PERFIL
+  ════════════════════════════ */
+    #perfil p {
+      font-size: 13px;
+      line-height: 1.72;
+    }
+
+    /* ════════════════════════════
+     EXPERIÊNCIA
+  ════════════════════════════ */
+    .job {
+      margin-bottom: 17px;
+    }
+
+    .job:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    /* h3 = cargo — ATS de PDF mapeia como "Job Title" */
+    h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .job-period {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* empresa — ATS de PDF mapeia como "Employer" */
+    .company {
+      font-weight: 500;
+      font-size: 11.5px;
+      color: var(--accent);
+      margin-top: 1px;
+      margin-bottom: 5px;
+    }
+
+    .contract-type {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+
+    .job-summary {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    /* Bullets — <ul><li> = melhor parsing de texto em PDF */
+    ul.bullets {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    ul.bullets li {
+      font-size: 12px;
+      color: var(--text);
+      padding: 2px 0 2px 13px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    ul.bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 9px;
+      top: 5px;
+    }
+
+    ul.bullets a {
+      color: var(--accent);
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+    }
+
+    /* ════════════════════════════
+     SIDEBAR
+  ════════════════════════════ */
+    aside section {
+      margin-bottom: 18px;
+    }
+
+    .skill-group {
+      margin-bottom: 8px;
+    }
+
+    .skill-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--text);
+      font-size: 10px;
+      padding: 2px 5px;
+      border-radius: 2px;
+    }
+
+    ul.soft {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.soft li {
+      font-size: 11.5px;
+      padding: 2px 0 2px 10px;
+      position: relative;
+      color: var(--text);
+    }
+
+    ul.soft li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .edu-name,
+    .cert-name {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .edu-sub,
+    .cert-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .lang {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      padding: 2px 0;
+    }
+
+    .lang-level {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .biz-name {
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .biz-role {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .biz-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .biz-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    /* ════════════════════════════
+     FOOTER — KEYWORDS VISÍVEIS
+     Visible para ATS/GAIA que
+     fazem parse do PDF como texto.
+     Tamanho reduzido mas legível.
+  ════════════════════════════ */
+    .kw-footer {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px solid var(--accent-light);
+    }
+
+    .kw-footer-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .kw-footer p {
+      font-size: 9px;
+      color: var(--muted);
+      line-height: 1.9;
+      letter-spacing: 0.2px;
+    }
+
+    /* ════════════════════════════
+     PRINT — CSS blindado
+     Garante que o PDF gerado via
+     Chrome Ctrl+P seja idêntico
+     ao que aparece na tela.
+  ════════════════════════════ */
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm 12mm;
+      }
+
+      body {
+        background: #fff !important;
+        font-size: 12px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        margin: 0 !important;
+        border: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+      }
+
+      /* Grid de duas colunas preservado no print */
+      .layout {
+        display: grid !important;
+        grid-template-columns: 1fr 195px !important;
+        gap: 0 28px !important;
+      }
+
+      /* Evita quebra de página dentro de um job */
+      .job {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Evita quebra de página logo após um h2 ou h3 */
+      h2,
+      h3 {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Mantém o footer de keywords junto ao conteúdo */
+      .kw-footer {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Links: mostra URL completa no print */
+      address a::after {
+        content: " (" attr(href) ")";
+        font-size: 9px;
+        color: var(--muted);
+      }
+    }
+
+    /* ── RESPONSIVO (só para edição no browser) ── */
+    @media (max-width: 680px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 24px 18px;
+        margin: 0;
+      }
+    }
+
+    /* ── BOTÃO DE DOWNLOAD (oculto na impressão) ── */
+    .download-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(26, 71, 49, 0.35);
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+      z-index: 999;
+    }
+
+    .download-btn:hover {
+      background: #245e3f;
+      transform: translateY(-2px);
+    }
+
+    .download-btn:active {
+      transform: scale(0.97);
+    }
+
+    @media print {
+      .download-btn {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="download-btn" onclick="window.print()" title="Salvar como PDF via Ctrl+P">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Baixar PDF
+  </button>
+
+  <div class="page">
+
+    <!-- ══ HEADER ══ -->
+    <header>
+      <h1>Richard Lima Ribeiro</h1>
+      <p class="subtitle">Engenheiro da Computação · Desenvolvedor Full Stack</p>
+      <address>
+        <span>(22) 981275474</span>
+        <span class="sep">|</span>
+        <a href="mailto:richardengenheirodacomputacao@gmail.com">richardengenheirodacomputacao@gmail.com</a>
+        <span class="sep">|</span>
+        <a
+          href="https://www.linkedin.com/in/richard-lima-ribeiro-488b451a8/">https://www.linkedin.com/in/richard-lima-ribeiro-488b451a8/</a>
+        <span class="sep">|</span>
+        <a href="https://github.com/limarich/richard-lima.git">https://github.com/limarich/richard-lima.git</a>
+        <span class="sep">|</span>
+        <a href="https://blwdevs.com.br">blwdevs.com.br</a>
+      </address>
+    </header>
+
+    <!-- ══ GRID ══ -->
+    <div class="layout">
+
+      <!-- ════ MAIN ════ -->
+      <main>
+
+        <!-- PERFIL -->
+        <section id="perfil">
+          <h2>Perfil Profissional</h2>
+          <p>
+            Engenheiro Full Stack com 5 anos projetando e entregando produtos de alta performance para web e mobile.
+            Especializado em React, React Native, Node.js e TypeScript, com experiência em arquitetura de sistemas do
+            zero,
+            otimização de carga e desenvolvimento end-to-end em ambientes de produção reais.
+            Não executo tarefas: estruturo soluções e levo produtos ao ar.
+          </p>
+        </section>
+
+        <!-- EXPERIÊNCIA -->
+        <section id="experiencia">
+          <h2>Experiência Profissional</h2>
+
+          <!-- Autocenter -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Desenvolvedor Full Stack</h3>
+              <span class="job-period">Out/2022 – Mar/2026</span>
+            </div>
+            <p class="company">Autocenter</p>
+            <p class="job-summary">
+              Responsável pela arquitetura e liderança técnica de um ecossistema SaaS multiplataforma para o segmento
+              automotivo, cobrindo web, Android e iOS. Atuei como referência técnica em um time de 3 a 5
+              desenvolvedores,
+              definindo stack, conduzindo code reviews e tomando decisões de produto junto à gestão.
+            </p>
+            <ul class="bullets">
+              <li>Projetei a arquitetura completa do sistema: React.js, Next.js, React Native, Expo, TypeScript, NestJS,
+                PostgreSQL e Docker</li>
+              <li>Entreguei 3 produtos simultâneos em produção: plataforma web, app para clientes e app para empresas
+              </li>
+              <li>Desenvolvi módulo ERP com mais de 20 funcionalidades cobrindo ordens de serviço, controle de estoque e
+                faturamento</li>
+              <li>Reduzi o tempo de resposta da aplicação em 80% via cacheamento com Redis e otimização de queries no
+                PostgreSQL</li>
+              <li>Estabeleci cobertura de testes entre 50% e 70% com Jest (TDD e testes unitários) e testes E2E com
+                Playwright</li>
+              <li>Integrei APIs REST e ERPs externos para comunicação com sistemas legados via Node.js e NestJS</li>
+              <li>Otimizei SEO das plataformas web com Next.js SSR/SSG, resultando em ganho de posicionamento orgânico
+                no Google</li>
+              <li>Gerenciei entregas em ambiente ágil com Scrum e Kanban, com pipeline de CI/CD via GitHub Actions</li>
+            </ul>
+          </div>
+
+          <!-- BLW Devs -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Fundador &amp; Desenvolvedor Full Stack</h3>
+              <span class="job-period">2025 – Atual</span>
+            </div>
+            <p class="company">BLW Devs <span class="contract-type">· Empresa própria</span></p>
+            <p class="job-summary">
+              Empresa de software próprio focada em produtos para o agronegócio. Responsável por produto, arquitetura e
+              desenvolvimento do Cultiva.ai — plataforma SaaS de gestão rural com assistente de IA por voz, integrada à
+              base técnica da EMBRAPA.
+            </p>
+            <ul class="bullets">
+              <li>Desenvolvi produto SaaS end-to-end: app mobile Android com React Native, Expo e TypeScript; API
+                backend com Node.js, NestJS e PostgreSQL; e landing page</li>
+              <li>Implementei assistente de IA conversacional por áudio com respostas baseadas em dados agronômicos da
+                EMBRAPA</li>
+              <li>Construí módulos de gestão de safras, controle de estoque de insumos, equipes e importação automática
+                de notas fiscais</li>
+              <li>Produto em fase de lançamento: <a href="https://cultivai.blwdevs.com.br">cultivai.blwdevs.com.br</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Movya -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Desenvolvedor Mobile</h3>
+              <span class="job-period">Mar/2025 – Ago/2025</span>
+            </div>
+            <p class="company">Movya <span class="contract-type">· Contrato PJ por projeto</span></p>
+            <p class="job-summary">
+              Desenvolvedor mobile exclusivo para app de comunidade de corredores (Android/iOS), assumindo
+              responsabilidade
+              técnica completa sobre a stack mobile do produto.
+            </p>
+            <ul class="bullets">
+              <li>Arquitetei o app do zero com React Native, Expo e TypeScript</li>
+              <li>Implementei rastreamento esportivo em tempo real com Background Location e Mapbox, atingindo 1% de
+                margem de erro no GPS</li>
+              <li>Desenvolvi features sociais com WebSockets e Socket.io: leaderboards em tempo real e notificações
+                instantâneas</li>
+              <li>Otimizei performance offline com WatermelonDB e atualizações otimistas, reduzindo tempo de resposta
+                local para menos de 100ms</li>
+            </ul>
+          </div>
+
+          <!-- Metrix -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Desenvolvedor Frontend</h3>
+              <span class="job-period">Dez/2021 – Abr/2022</span>
+            </div>
+            <p class="company">Metrix</p>
+            <ul class="bullets">
+              <li>Responsável end-to-end pelo site institucional: prototipação no Figma ao deploy em produção</li>
+              <li>UI/UX no Figma com aderência à identidade visual e design responsivo mobile-first</li>
+              <li>Desenvolvimento com React.js e TypeScript seguindo boas práticas de componentização e acessibilidade
+              </li>
+              <li>Otimização de SEO para crescimento de tráfego orgânico</li>
+            </ul>
+          </div>
+
+          <!-- Allcontece -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Desenvolvedor Full Stack</h3>
+              <span class="job-period">Fev/2021 – Fev/2022</span>
+            </div>
+            <p class="company">Allcontece</p>
+            <ul class="bullets">
+              <li>Desenvolvimento de plataforma e-commerce para catálogo virtual de moda: frontend, backend e gestão de
+                produto</li>
+              <li>Interfaces no Figma e implementação com JavaScript, HTML, CSS e Handlebars</li>
+              <li>API RESTful com Node.js, Express e MongoDB para gestão de estoque e pedidos</li>
+            </ul>
+          </div>
+
+        </section>
+      </main>
+
+      <!-- ════ SIDEBAR ════ -->
+      <aside>
+
+        <section id="habilidades">
+          <h2>Habilidades Técnicas</h2>
+
+          <div class="skill-group">
+            <div class="skill-label">Frontend</div>
+            <div class="tags">
+              <span class="tag">React.js</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Tailwind CSS</span>
+              <span class="tag">Styled Components</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Mobile</div>
+            <div class="tags">
+              <span class="tag">React Native</span>
+              <span class="tag">Expo</span>
+              <span class="tag">Flutter</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Backend</div>
+            <div class="tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">NestJS</span>
+              <span class="tag">Express</span>
+              <span class="tag">REST API</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">Redis</span>
+              <span class="tag">Prisma</span>
+              <span class="tag">TypeORM</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Infra &amp; QA</div>
+            <div class="tags">
+              <span class="tag">Docker</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">Jest</span>
+              <span class="tag">Playwright</span>
+              <span class="tag">TDD</span>
+              <span class="tag">Git</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-label">Outros</div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Golang</span>
+              <span class="tag">WebSockets</span>
+              <span class="tag">Socket.io</span>
+              <span class="tag">Scrum</span>
+              <span class="tag">Kanban</span>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Soft Skills</h2>
+          <ul class="soft">
+            <li>Liderança técnica</li>
+            <li>Pensamento analítico</li>
+            <li>Comunicação eficaz</li>
+            <li>Trabalho em equipe</li>
+            <li>Adaptabilidade</li>
+            <li>Proatividade</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Idiomas</h2>
+          <div class="lang"><span>Português</span><span class="lang-level">Nativo</span></div>
+          <div class="lang"><span>Inglês</span><span class="lang-level">Intermediário</span></div>
+        </section>
+
+        <section id="formacao">
+          <h2>Formação Acadêmica</h2>
+          <div class="edu-name">Engenharia da Computação</div>
+          <div class="edu-sub">UNIVASF · Set/2019 – Fev/2026</div>
+        </section>
+
+        <section id="certificacoes">
+          <h2>Certificações</h2>
+          <div class="cert-name">Node.js do Zero à Maestria</div>
+          <div class="cert-meta">Udemy · 37,5h · 2022</div>
+          <div class="cert-name">Fundamentos de Front-End</div>
+          <div class="cert-meta">DIO · 25h · 2024</div>
+          <div class="cert-name">Reconhecimento de Textos com OCR e Python</div>
+          <div class="cert-meta">Udemy · 14h · 2025</div>
+        </section>
+
+        <section>
+          <h2>Empreendedorismo</h2>
+          <div class="biz-name">BLW Devs</div>
+          <div class="biz-role">Fundador &amp; CTO</div>
+          <p class="biz-desc">Software house para o agronegócio. Produto: Cultiva.ai — gestão rural com IA por voz
+            integrada à EMBRAPA.</p>
+          <a class="biz-link" href="https://cultivai.blwdevs.com.br">cultivai.blwdevs.com.br</a>
+        </section>
+
+      </aside>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+       FOOTER DE KEYWORDS — visível, discreto, legível
+       Extraído como texto plano por ATS e GAIA.
+       Estratégia: lista de termos separados por · 
+       em tamanho reduzido para não chamar atenção visual
+       mas preservar peso no ranqueamento.
+  ══════════════════════════════════════════════ -->
+    <footer class="kw-footer">
+      <p class="kw-footer-label">Competências &amp; Tecnologias</p>
+      <p>
+        React · React.js · Next.js · React Native · Expo · Flutter · TypeScript · JavaScript · ES6+
+        · Node.js · NestJS · Express · REST API · GraphQL · PostgreSQL · MySQL · MongoDB · Redis
+        · Prisma · TypeORM · Docker · Kubernetes · CI/CD · GitHub Actions · Git · Jest · TDD
+        · Playwright · Testes Unitários · Testes E2E · Python · Golang · WebSockets · Socket.io
+        · Tailwind CSS · Styled Components · Figma · SEO · SSR · SSG · SaaS · ERP · Agile · Scrum
+        · Kanban · Arquitetura de Software · Microsserviços · Mobile Android · Mobile iOS
+        · Full Stack Developer · Frontend Developer · Backend Developer · Mobile Developer
+        · Desenvolvedor Full Stack · Desenvolvedor Frontend · Desenvolvedor Mobile
+        · Engenheiro de Software · Engenheiro da Computação · Liderança Técnica · Code Review
+      </p>
+    </footer>
+
+  </div>
+</body>
+
+</html>

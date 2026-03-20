@@ -1491,6 +1491,73 @@
     }
 
     /* ══════════════════════════════════════
+   RESUME SECTION
+══════════════════════════════════════ */
+    .resume-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .resume-btn-open,
+    .resume-btn-pdf {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resume-frame-wrap {
+      position: relative;
+      width: 100%;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #f5f4f0;
+      aspect-ratio: 1 / 1.18;
+      max-height: 780px;
+    }
+
+    .resume-iframe {
+      width: 154%;
+      height: 154%;
+      border: none;
+      transform: scale(0.649);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+
+    .resume-frame-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .resume-frame-overlay span {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1rem;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .resume-frame-wrap:hover .resume-frame-overlay {
+      background: rgba(7, 10, 15, 0.15);
+    }
+
+    .resume-frame-wrap:hover .resume-frame-overlay span {
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════
    HAMBURGER / MOBILE NAV
 ══════════════════════════════════════ */
     .nav-right {
@@ -1767,6 +1834,22 @@
 
       .nav-links {
         display: none;
+      }
+
+      /* Resume: hide iframe on mobile, keep just the buttons */
+      .resume-frame-wrap {
+        display: none;
+      }
+
+      .resume-actions {
+        flex-direction: column;
+      }
+
+      .resume-btn-open,
+      .resume-btn-pdf {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
       }
 
       .hamburger {

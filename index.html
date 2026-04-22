@@ -403,7 +403,7 @@
       <h2 class="reveal"><span data-i18n="resume.title1">MEU</span> <span style="color:var(--accent)"
           data-i18n="resume.title2">CURRÍCULO</span></h2>
       <div class="resume-actions reveal">
-        <a href="resume.html" target="_blank" class="btn-primary resume-btn-open">
+        <a id="resume-btn-open" href="resume.html" target="_blank" class="btn-primary resume-btn-open">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -412,8 +412,8 @@
           </svg>
           <span data-i18n="resume.btn.open">Abrir em nova aba</span>
         </a>
-        <a href="resume.html" target="_blank"
-          onclick="event.preventDefault(); const w=window.open('resume.html','_blank'); w.onload=()=>w.print();"
+        <a id="resume-btn-pdf" href="resume.html" target="_blank"
+          onclick="event.preventDefault(); const f=document.getElementById('resume-iframe').src; const w=window.open(f,'_blank'); w.onload=()=>w.print();"
           class="btn-secondary resume-btn-pdf">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -425,9 +425,9 @@
         </a>
       </div>
       <div class="resume-frame-wrap reveal">
-        <iframe src="resume.html" class="resume-iframe" title="Currículo Richard Lima" scrolling="no"
+        <iframe id="resume-iframe" src="resume.html" class="resume-iframe" title="Currículo Richard Lima" scrolling="no"
           loading="lazy"></iframe>
-        <div class="resume-frame-overlay" onclick="window.open('resume.html','_blank')">
+        <div class="resume-frame-overlay" onclick="window.open(document.getElementById('resume-iframe').src,'_blank')">
           <span data-i18n="resume.overlay">Clique para abrir</span>
         </div>
       </div>

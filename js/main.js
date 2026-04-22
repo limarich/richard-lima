@@ -197,6 +197,13 @@
         if (val !== undefined) el.innerHTML = val;
       });
 
+      // Switch resume file based on language
+      const resumeFile = lang === 'en' ? 'resume-en.html' : 'resume.html';
+      const iframe = document.getElementById('resume-iframe');
+      const btnOpen = document.getElementById('resume-btn-open');
+      if (iframe) iframe.src = resumeFile;
+      if (btnOpen) btnOpen.href = resumeFile;
+
       // Animate transition
       document.body.style.opacity = '0.7';
       setTimeout(() => { document.body.style.opacity = '1'; }, 200);

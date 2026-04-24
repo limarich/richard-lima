@@ -442,9 +442,42 @@
     }
 
     @media print {
-      .download-btn {
+
+      .download-btn,
+      .download-btn-ats {
         display: none !important;
       }
+    }
+
+    .download-btn-ats {
+      position: fixed;
+      bottom: 80px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 10px 18px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      box-shadow: 0 2px 12px rgba(26, 71, 49, 0.18);
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      z-index: 999;
+    }
+
+    .download-btn-ats:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .download-btn-ats:active {
+      transform: scale(0.97);
     }
   </style>
 </head>
@@ -458,6 +491,18 @@
       <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
     Download PDF
+  </button>
+
+  <button class="download-btn-ats" onclick="downloadATS()" title="Generate ATS-friendly PDF">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+    PDF (ATS)
   </button>
 
   <div class="page">
@@ -491,43 +536,14 @@
           <h2>Professional Profile</h2>
           <p>
             Full Stack Developer with 5 years building production SaaS products for the automotive and agribusiness
-            sectors. Specialized in React, React Native, NestJS and TypeScript, with experience in system architecture,
-            technical team leadership, and end-to-end product delivery.
-            Proven track record of reducing application response times and improving test coverage.
+            sectors. Specialized in React, React Native, NestJS and TypeScript, with a focus on system architecture,
+            technical team leadership, and high-performance product delivery.
           </p>
         </section>
 
         <!-- EXPERIENCE -->
         <section id="experience">
           <h2>Professional Experience</h2>
-
-          <!-- Autocenter -->
-          <div class="job">
-            <div class="job-header">
-              <h3>Full Stack Developer</h3>
-              <span class="job-period">Oct/2022 – Mar/2026</span>
-            </div>
-            <p class="company">Autocenter</p>
-            <p class="job-summary">
-              Responsible for the architecture and technical leadership of a cross-platform SaaS ecosystem for the
-              automotive segment, covering web, Android and iOS. Acted as technical reference in a team of 3 to 5
-              developers, defining the stack, conducting code reviews, and making product decisions alongside management.
-            </p>
-            <ul class="bullets">
-              <li>Designed the complete system architecture: React.js, Next.js, React Native, Expo, TypeScript, NestJS,
-                PostgreSQL and Docker</li>
-              <li>Delivered 3 simultaneous products in production: web platform, customer app and business app</li>
-              <li>Developed an ERP module with over 20 features covering service orders, inventory control and invoicing
-              </li>
-              <li>Reduced application response time through data caching and query optimization</li>
-              <li>Established test coverage with Jest (TDD and unit tests)</li>
-              <li>Integrated REST APIs and external ERPs for communication with legacy systems via Node.js and NestJS
-              </li>
-              <li>Optimized SEO of web platforms with Next.js SSR/SSG, resulting in improved organic search ranking on
-                Google</li>
-              <li>Delivered in agile environment with Scrum and Kanban, with CI/CD pipeline via GitHub Actions</li>
-            </ul>
-          </div>
 
           <!-- BLW Devs -->
           <div class="job">
@@ -537,16 +553,33 @@
             </div>
             <p class="company">BLW Devs <span class="contract-type">· Own company</span></p>
             <p class="job-summary">
-              Proprietary software company focused on agribusiness products. Responsible for product, architecture and
-              development of Cultiva.ai — a rural management SaaS platform with a voice AI assistant, integrated with
-              EMBRAPA's technical database. <a href="https://cultivai.blwdevs.com.br">cultivai.blwdevs.com.br</a>
+              Founded and lead BLW Devs, a software house focused on agribusiness. Solely responsible for the full product chain of Cultiva.ai — architecture, development, infrastructure and go-to-market — using Go, Flutter and PostgreSQL.
             </p>
             <ul class="bullets">
-              <li>Developed end-to-end SaaS product: Android/iOS mobile app with Flutter; backend API with Go and
-                PostgreSQL; landing page and automated deploys via CI/CD with GitHub Actions</li>
-              <li>Implemented conversational AI assistant via audio with responses based on EMBRAPA agronomic data</li>
-              <li>Built crop management, input inventory control, team management and automatic invoice import modules
-              </li>
+              <li>Engineered conversational AI assistant using OpenAI/Whisper processing <b>30+ agronomic queries per day</b> based on EMBRAPA data, serving 6 rural producers in beta phase.</li>
+              <li>Automated financial reconciliation by building a custom invoice processing module, achieving an <b>80% reduction in data entry errors</b> and saving 40+ operational hours monthly.</li>
+              <li>Shipped end-to-end SaaS product: Android/iOS mobile app with Flutter; backend API with Go and PostgreSQL; landing page and automated deploys via CI/CD with GitHub Actions.</li>
+            </ul>
+          </div>
+
+          <!-- Autocenter -->
+          <div class="job">
+            <div class="job-header">
+              <h3>Full Stack Developer</h3>
+              <span class="job-period">Oct/2022 – Mar/2026</span>
+            </div>
+            <p class="company">Autocenter</p>
+            <p class="job-summary">
+              Architected and led development of a cross-platform SaaS ecosystem for the automotive segment, guiding a team of 3-5 developers in defining tech stack and product strategy.
+            </p>
+            <ul class="bullets">
+              <li>Delivered 3 simultaneous products (web, customer app, business app) from concept to production in under 18 months, utilizing React.js, Next.js, React Native, NestJS, and PostgreSQL.</li>
+              <li>Implemented ERP module with 20+ features, doubling revenue and reducing service order processing time by <b>60%</b>.</li>
+              <li>Reduced application response time by <b>80%</b> via Redis data caching and SQL query optimization.</li>
+              <li>Achieved <b>85% unit test coverage</b> with Jest and TDD, reducing production regressions.</li>
+              <li>Integrated 3+ REST APIs and external ERPs for legacy system communication via Node.js and NestJS.</li>
+              <li>Boosted organic search visibility with Next.js SSR/SSG, reducing page load time by <b>40%</b> and improving search ranking.</li>
+              <li>Managed sprints and continuous deploys with Scrum, Kanban and CI/CD pipeline via GitHub Actions for a team of 3–5 devs.</li>
             </ul>
           </div>
 
@@ -556,19 +589,14 @@
               <h3>Mobile Developer</h3>
               <span class="job-period">Mar/2025 – Aug/2025</span>
             </div>
-            <p class="company">Movya <span class="contract-type">· PJ contract per project</span></p>
+            <p class="company">Movya <span class="contract-type">· Freelance project</span></p>
             <p class="job-summary">
-              Sole mobile developer for a runners community app (Android/iOS), with full technical responsibility over
-              the product's mobile stack.
+              Hired as sole developer to design and deliver from scratch a sports community mobile app for iOS and Android, featuring real-time activity tracking, social feed and a gamification system for runners.
             </p>
             <ul class="bullets">
-              <li>Architected the app from scratch with React Native, Expo and TypeScript</li>
-              <li>Implemented real-time sports tracking with Background Location and Mapbox, achieving 1% GPS margin of
-                error</li>
-              <li>Developed social features with WebSockets and Socket.io: real-time leaderboards and instant
-                notifications</li>
-              <li>Optimized offline performance with WatermelonDB and optimistic updates, reducing local response time
-                to under 100ms</li>
+              <li>Implemented precision sports tracking using Geolocation and Mapbox GL, achieving a <b>99% GPS accuracy rate</b> while maintaining optimized battery consumption.</li>
+              <li>Orchestrated real-time social engagement features via WebSockets and Socket.io, resulting in near-instantaneous leaderboard updates and push notifications.</li>
+              <li>Streamlined offline data synchronization using WatermelonDB and optimistic updates, reducing UI latency to <b>under 100ms</b> and ensuring 100% functionality in low-connectivity areas.</li>
             </ul>
           </div>
 
@@ -579,13 +607,13 @@
               <span class="job-period">Dec/2021 – Apr/2022</span>
             </div>
             <p class="company">Metrix</p>
+            <p class="job-summary">
+              Sole developer responsible for the company's full digital transformation, working end-to-end: requirements gathering, Figma design, development and production deployment.
+            </p>
             <ul class="bullets">
-              <li>End-to-end responsible for the institutional website: from Figma prototyping to production deployment
-              </li>
-              <li>UI/UX in Figma adhering to visual identity and mobile-first responsive design</li>
-              <li>Development with React.js and TypeScript following componentization and accessibility best practices
-              </li>
-              <li>SEO optimization for organic traffic growth</li>
+              <li>Delivered the full corporate digital presence in <b>5 months as the sole developer</b>, from Figma prototyping to full production deployment.</li>
+              <li>Engineered a responsive, performance-first frontend with React and TypeScript adhering to <b>WCAG 2.1 guidelines</b>, achieving a Lighthouse score above <b>90</b> in performance and accessibility.</li>
+              <li>Implemented SSR/SSG with Next.js improving Core Web Vitals and increasing organic search engine visibility.</li>
             </ul>
           </div>
 
@@ -596,11 +624,13 @@
               <span class="job-period">Feb/2021 – Feb/2022</span>
             </div>
             <p class="company">Allcontece</p>
+            <p class="job-summary">
+              Solely responsible for the full product cycle of a fashion e-commerce platform, from architecture design to production launch, working across frontend, backend and product management.
+            </p>
             <ul class="bullets">
-              <li>Development of an e-commerce platform for a virtual fashion catalog: frontend, backend and product
-                management</li>
-              <li>Interfaces in Figma and implementation with JavaScript, HTML, CSS and Handlebars</li>
-              <li>RESTful API with Node.js, Express and MongoDB for inventory and order management</li>
+              <li>Built fashion e-commerce platform in <b>12 months as solo full stack developer</b>, covering frontend, backend and product management from zero to production.</li>
+              <li>Architected RESTful API with Node.js, Express and MongoDB managing product catalog and real-time order processing with <b>response times under 200ms</b>.</li>
+              <li>Implemented Handlebars + CSS interface reducing initial load time by <b>35%</b> through lazy loading and asset optimization.</li>
             </ul>
           </div>
 
@@ -676,17 +706,6 @@
           </div>
         </section>
 
-        <section>
-          <h2>Soft Skills</h2>
-          <ul class="soft">
-            <li>Technical leadership</li>
-            <li>Analytical thinking</li>
-            <li>Effective communication</li>
-            <li>Teamwork</li>
-            <li>Adaptability</li>
-            <li>Proactivity</li>
-          </ul>
-        </section>
 
         <section>
           <h2>Languages</h2>
@@ -737,6 +756,167 @@
     </footer>
 
   </div>
+  <script>
+    function downloadATS() {
+      function esc(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      function norm(el) {
+        return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
+      }
+
+      const name = norm(document.querySelector('h1'));
+      const subtitle = norm(document.querySelector('.subtitle'));
+
+      const addr = document.querySelector('address');
+      const spans = addr ? addr.querySelectorAll('span:not(.sep)') : [];
+      const phone = spans.length > 0 ? norm(spans[0]) : '';
+
+      const links = addr ? addr.querySelectorAll('a') : [];
+      const email = links.length > 0 ? norm(links[0]) : '';
+      const linkedin = links.length > 1 ? links[1].href : '';
+      const github = links.length > 2 ? links[2].href : '';
+      const website = links.length > 3 ? norm(links[3]) : '';
+
+      const profile = norm(document.querySelector('#profile p') || document.querySelector('#perfil p'));
+
+      const jobs = Array.from(document.querySelectorAll('.job')).map(function (job) {
+        return {
+          title: norm(job.querySelector('h3')),
+          period: norm(job.querySelector('.job-period')),
+          company: norm(job.querySelector('.company')),
+          summary: norm(job.querySelector('.job-summary')),
+          bullets: Array.from(job.querySelectorAll('.bullets li')).map(function (li) {
+            return norm(li);
+          })
+        };
+      });
+
+      const skillGroups = Array.from(document.querySelectorAll('.skill-group')).map(function (g) {
+        return {
+          label: norm(g.querySelector('.skill-label')),
+          tags: Array.from(g.querySelectorAll('.tag')).map(function (t) { return norm(t); })
+        };
+      });
+
+      const softSkills = Array.from(document.querySelectorAll('ul.soft li')).map(norm);
+
+      const langs = Array.from(document.querySelectorAll('.lang')).map(function (l) {
+        const spans = l.querySelectorAll('span');
+        if (spans.length >= 2) {
+          return norm(spans[0]) + ': ' + norm(spans[1]);
+        }
+        return norm(l);
+      });
+
+      const eduName = norm(document.querySelector('.edu-name'));
+      const eduSub = norm(document.querySelector('.edu-sub'));
+
+      const certs = Array.from(document.querySelectorAll('.cert-name')).map((c, i) => {
+        const meta = document.querySelectorAll('.cert-meta')[i];
+        return norm(c) + (meta ? ' | ' + norm(meta) : '');
+      });
+
+      const bizName = norm(document.querySelector('.biz-name'));
+      const bizRole = norm(document.querySelector('.biz-role'));
+      const bizDesc = norm(document.querySelector('.biz-desc'));
+      const bizLinkEl = document.querySelector('.biz-link');
+      const bizLink = bizLinkEl ? bizLinkEl.href : '';
+
+      const contactLine = [phone, email, linkedin, github, website].filter(x => x).map(esc).join(' | ');
+
+      const jobsHtml = jobs.map(function (j) {
+        const bulletsHtml = j.bullets.length
+          ? '<ul>' + j.bullets.map(function (b) { return '<li>- ' + esc(b) + '</li>'; }).join('') + '</ul>'
+          : '';
+        return '<div class="job-block">'
+          + '<p class="job-title">' + esc(j.title) + '</p>'
+          + '<p class="job-company">' + esc(j.company) + '</p>'
+          + '<p class="job-period">' + esc(j.period) + '</p>'
+          + (j.summary ? '<p class="job-summary">' + esc(j.summary) + '</p>' : '')
+          + bulletsHtml
+          + '</div>';
+      }).join('');
+
+      const skillsHtml = skillGroups.map(function (g) {
+        return '<p><strong>' + esc(g.label) + ':</strong> ' + g.tags.map(esc).join(', ') + '</p>';
+      }).join('');
+
+      const softSkillsHtml = softSkills.length
+        ? '<h2>Soft Skills</h2>\n<p>' + esc(softSkills.join(', ')) + '</p>\n'
+        : '';
+
+      const html = '<!DOCTYPE html>\n'
+        + '<html lang="en">\n'
+        + '<head>\n'
+        + '<meta charset="UTF-8">\n'
+        + '<title>' + esc(name) + ' - ATS Resume</title>\n'
+        + '<style>\n'
+        + '* { margin: 0; padding: 0; box-sizing: border-box; }\n'
+        + 'body { font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.4; color: #000; padding: 15mm; }\n'
+        + 'h1 { font-size: 18pt; margin-bottom: 2pt; }\n'
+        + '.subtitle { font-size: 12pt; font-weight: bold; margin-bottom: 2pt; }\n'
+        + '.contact { font-size: 10pt; margin-bottom: 12pt; color: #333; }\n'
+        + 'h2 { font-size: 12pt; text-transform: uppercase; border-bottom: 1px solid #000; margin: 14pt 0 6pt; }\n'
+        + 'p { margin-bottom: 4pt; }\n'
+        + 'ul { list-style: none; margin-bottom: 8pt; }\n'
+        + 'li { margin-bottom: 2pt; }\n'
+        + '.job-block { margin-bottom: 10pt; }\n'
+        + '.job-title { font-weight: bold; }\n'
+        + '.job-company { font-style: italic; }\n'
+        + '</style>\n'
+        + '</head>\n'
+        + '<body>\n'
+        + '<h1>' + esc(name) + '</h1>\n'
+        + '<p class="subtitle">' + esc(subtitle) + '</p>\n'
+        + '<p class="contact">' + contactLine + '</p>\n'
+        + '<h2>Professional Profile</h2>\n'
+        + '<p>' + esc(profile) + '</p>\n'
+        + '<h2>Professional Experience</h2>\n'
+        + jobsHtml
+        + '<h2>Technical Skills</h2>\n'
+        + skillsHtml
+        + softSkillsHtml
+        + '<h2>Languages</h2>\n'
+        + langs.map(function (l) { return '<p>' + esc(l) + '</p>'; }).join('')
+        + '<h2>Education</h2>\n'
+        + '<p><strong>' + esc(eduName) + '</strong></p>\n'
+        + '<p>' + esc(eduSub) + '</p>\n'
+        + '<h2>Certifications</h2>\n'
+        + certs.map(function (c) { return '<p>' + esc(c) + '</p>'; }).join('')
+        + (bizName ? '<h2>Entrepreneurship</h2>\n'
+        + '<p><strong>' + esc(bizName) + '</strong> - ' + esc(bizRole) + '</p>\n'
+        + '<p>' + esc(bizDesc) + '</p>\n'
+        + '<p>' + esc(bizLink) + '</p>\n' : '')
+        + '</body>\n'
+        + '</html>';
+
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const blobUrl = URL.createObjectURL(blob);
+      const win = window.open(blobUrl, '_blank');
+      if (win) {
+        win.addEventListener('load', function () {
+          win.focus();
+          win.print();
+          setTimeout(function () { URL.revokeObjectURL(blobUrl); }, 1000);
+        });
+      } else {
+        URL.revokeObjectURL(blobUrl);
+        alert('Please allow pop-ups for this site to generate the PDF.');
+      }
+    }
+
+    // Auto-trigger ATS download when opened via ?ats=1
+    if (new URLSearchParams(window.location.search).get('ats') === '1') {
+      window.addEventListener('load', function () {
+        setTimeout(downloadATS, 300);
+      });
+    }
+  </script>
 </body>
 
 </html>

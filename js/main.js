@@ -23,11 +23,6 @@
         "about.title2": "PROFISSIONAL",
         "about.p1": 'Passei os últimos 5 anos construindo produtos do zero — da tela no Figma até o app nas mãos do usuário final. Trabalhei em startups e empresas de segmentos diferentes, sempre com responsabilidade sobre o ciclo inteiro.',
         "about.p2": 'Fundei a <span style="color:var(--accent2)">BLW Devs</span> com a ideia simples de construir software que dure. Não tenho paciência pra buzzword, mas tenho pra problema difícil.',
-        "soft.1": "Liderança & Proatividade",
-        "soft.2": "Pensamento Analítico",
-        "soft.3": "Comunicação Eficaz",
-        "soft.4": "Trabalho em Equipe",
-        "soft.5": "Adaptabilidade",
         "info.location.label": "Localização",
         "info.degree.label": "Formação",
         "info.degree.value": "Eng. Computação",
@@ -113,11 +108,6 @@
         "about.title2": "PROFILE",
         "about.p1": 'I spent the last 5 years building products from scratch — from the screen in Figma to the app in the user\'s hands. I\'ve worked across startups and different industries, always owning the full cycle.',
         "about.p2": 'I founded <span style="color:var(--accent2)">BLW Devs</span> with a simple idea: build software that lasts. I have no patience for buzzwords, but plenty of it for hard problems.',
-        "soft.1": "Leadership & Proactivity",
-        "soft.2": "Analytical Thinking",
-        "soft.3": "Effective Communication",
-        "soft.4": "Teamwork",
-        "soft.5": "Adaptability",
         "info.location.label": "Location",
         "info.degree.label": "Degree",
         "info.degree.value": "Computer Engineering",
@@ -201,8 +191,10 @@
       const resumeFile = lang === 'en' ? 'resume-en.html' : 'resume.html';
       const iframe = document.getElementById('resume-iframe');
       const btnOpen = document.getElementById('resume-btn-open');
+      const btnPdf = document.getElementById('resume-btn-pdf');
       if (iframe) iframe.src = resumeFile;
       if (btnOpen) btnOpen.href = resumeFile;
+      if (btnPdf) btnPdf.href = resumeFile;
 
       // Animate transition
       document.body.style.opacity = '0.7';

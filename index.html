@@ -179,23 +179,6 @@
             tecnologia de forma criativa e eficiente.
           </p>
 
-          <div class="soft-list">
-            <div class="soft-item">
-              <div class="soft-dot"></div><span data-i18n="soft.1">Liderança & Proatividade</span>
-            </div>
-            <div class="soft-item">
-              <div class="soft-dot"></div><span data-i18n="soft.2">Pensamento Analítico</span>
-            </div>
-            <div class="soft-item">
-              <div class="soft-dot"></div><span data-i18n="soft.3">Comunicação Eficaz</span>
-            </div>
-            <div class="soft-item">
-              <div class="soft-dot"></div><span data-i18n="soft.4">Trabalho em Equipe</span>
-            </div>
-            <div class="soft-item">
-              <div class="soft-dot"></div><span data-i18n="soft.5">Adaptabilidade</span>
-            </div>
-          </div>
         </div>
 
         <div class="reveal right">
@@ -413,7 +396,7 @@
           <span data-i18n="resume.btn.open">Abrir em nova aba</span>
         </a>
         <a id="resume-btn-pdf" href="resume.html" target="_blank"
-          onclick="event.preventDefault(); const f=document.getElementById('resume-iframe').src; const w=window.open(f,'_blank'); w.onload=()=>w.print();"
+          onclick="event.preventDefault(); const f=document.getElementById('resume-iframe').src; const base=f.split('?')[0]; window.open(base+'?ats=1','_blank');"
           class="btn-secondary resume-btn-pdf">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
             stroke-linecap="round" stroke-linejoin="round">

@@ -26,7 +26,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
-    /* ── TOKENS ── */
     :root {
       --bg: #f5f4f0;
       --surface: #ffffff;
@@ -41,7 +40,6 @@
       --page-pad-v: 54px;
     }
 
-    /* ── RESET ── */
     *,
     *::before,
     *::after {
@@ -50,7 +48,6 @@
       box-sizing: border-box;
     }
 
-    /* ── BASE ── */
     body {
       font-family: 'IBM Plex Sans', sans-serif;
       background: var(--bg);
@@ -61,7 +58,6 @@
       print-color-adjust: exact;
     }
 
-    /* ── WRAPPER ── */
     .page {
       max-width: 870px;
       margin: 36px auto;
@@ -136,7 +132,7 @@
       margin-bottom: 12px;
     }
 
-    #profile p {
+    #perfil p {
       font-size: 13px;
       line-height: 1.72;
     }
@@ -349,6 +345,78 @@
       letter-spacing: 0.2px;
     }
 
+    body.focus-frontend li[data-focus="backend"] {
+      display: none !important;
+    }
+
+    body.focus-backend li[data-focus="frontend"] {
+      display: none !important;
+    }
+
+    body.focus-frontend [data-variant="backend"],
+    body.focus-frontend [data-variant="fullstack"] {
+      display: none !important;
+    }
+
+    body.focus-frontend [data-variant="frontend"] {
+      display: block !important;
+    }
+
+    body.focus-backend [data-variant="frontend"],
+    body.focus-backend [data-variant="fullstack"] {
+      display: none !important;
+    }
+
+    body.focus-backend [data-variant="backend"] {
+      display: block !important;
+    }
+
+    .focus-panel {
+      position: fixed;
+      bottom: 132px;
+      right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid var(--border);
+      padding: 6px 8px;
+      box-shadow: 0 2px 12px rgba(26, 71, 49, 0.12);
+      z-index: 999;
+    }
+
+    .focus-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .focus-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      padding: 4px 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      border-radius: 2px;
+    }
+
+    .focus-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .focus-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
     @media print {
       @page {
         size: A4;
@@ -441,14 +509,6 @@
       transform: scale(0.97);
     }
 
-    @media print {
-
-      .download-btn,
-      .download-btn-ats {
-        display: none !important;
-      }
-    }
-
     .download-btn-ats {
       position: fixed;
       bottom: 80px;
@@ -479,10 +539,39 @@
     .download-btn-ats:active {
       transform: scale(0.97);
     }
+
+    @media print {
+
+      .download-btn,
+      .download-btn-ats,
+      .focus-panel {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <div class="focus-panel">
+    <span class="focus-label">Focus:</span>
+    <button class="focus-btn active" data-focus="fullstack" onclick="setFocus('fullstack')">Full Stack</button>
+    <button class="focus-btn" data-focus="frontend" onclick="setFocus('frontend')">Frontend</button>
+    <button class="focus-btn" data-focus="backend" onclick="setFocus('backend')">Backend</button>
+  </div>
+
+  <button class="download-btn-ats" onclick="downloadATS()" title="Generate ATS-optimized PDF">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="8" y1="6" x2="21" y2="6" />
+      <line x1="8" y1="12" x2="21" y2="12" />
+      <line x1="8" y1="18" x2="21" y2="18" />
+      <line x1="3" y1="6" x2="3.01" y2="6" />
+      <line x1="3" y1="12" x2="3.01" y2="12" />
+      <line x1="3" y1="18" x2="3.01" y2="18" />
+    </svg>
+    PDF (ATS)
+  </button>
+
   <button class="download-btn" onclick="window.print()" title="Save as PDF via Ctrl+P">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
       stroke-linecap="round" stroke-linejoin="round">
@@ -493,56 +582,52 @@
     Download PDF
   </button>
 
-  <button class="download-btn-ats" onclick="downloadATS()" title="Generate ATS-friendly PDF">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-      stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-      <polyline points="10 9 9 9 8 9" />
-    </svg>
-    PDF (ATS)
-  </button>
-
   <div class="page">
 
-    <!-- ══ HEADER ══ -->
     <header>
       <h1>Richard Lima Ribeiro</h1>
       <p class="subtitle">Software Engineer · Mid-Level Full Stack Developer</p>
       <address>
-        <span>(22) 981275474</span>
+        <span>+55 22 981275474</span>
         <span class="sep">|</span>
         <a href="mailto:richardengenheirodacomputacao@gmail.com">richardengenheirodacomputacao@gmail.com</a>
         <span class="sep">|</span>
         <a
-          href="https://www.linkedin.com/in/richard-lima-ribeiro-488b451a8/">https://www.linkedin.com/in/richard-lima-ribeiro-488b451a8/</a>
+          href="https://www.linkedin.com/in/richard-lima-ribeiro-488b451a8/">linkedin.com/in/richard-lima-ribeiro-488b451a8</a>
         <span class="sep">|</span>
-        <a href="https://github.com/limarich/richard-lima.git">https://github.com/limarich/richard-lima.git</a>
+        <a href="https://github.com/limarich/">github.com/limarich</a>
         <span class="sep">|</span>
-        <a href="https://blwdevs.com.br">blwdevs.com.br</a>
+        <a href="https://portfolio.richdev.com.br">portfolio.richdev.com.br</a>
       </address>
     </header>
 
-    <!-- ══ GRID ══ -->
     <div class="layout">
 
-      <!-- ════ MAIN ════ -->
       <main>
 
-        <!-- PROFILE -->
-        <section id="profile">
+        <!-- PERFIL -->
+        <section id="perfil">
           <h2>Professional Profile</h2>
-          <p>
-            Full Stack Developer with 5 years building production SaaS products for the automotive and agribusiness
-            sectors. Specialized in React, React Native, NestJS and TypeScript, with a focus on system architecture,
-            technical team leadership, and high-performance product delivery.
+          <p data-variant="fullstack">
+            Full Stack Developer with 5 years of experience building SaaS products in production for the automotive and agribusiness sectors.
+            Specialized in React, Next.js, Node.js, NestJS, and TypeScript, focusing on system architecture,
+            technical leadership, and high-performance delivery. Experienced with CI/CD, automated testing,
+            ReactQuery, and REST API integrations in multi-user production environments.
+          </p>
+          <p data-variant="frontend" style="display:none">
+            Frontend Developer with 5 years of experience building high-performance interfaces for SaaS products in production
+            within the automotive and agribusiness sectors. Specialized in React, Next.js, React Native, and TypeScript, focusing
+            on UI architecture, web performance, SEO, and frontend technical leadership.
+          </p>
+          <p data-variant="backend" style="display:none">
+            Backend Developer with 5 years of experience architecting APIs and high-availability systems for SaaS products
+            in production. Specialized in NestJS, Node.js, TypeORM, and PostgreSQL, focusing on microservices
+            architecture, legacy system integrations, and high-performance delivery in production environments.
           </p>
         </section>
 
-        <!-- EXPERIENCE -->
-        <section id="experience">
+        <!-- EXPERIÊNCIA -->
+        <section id="experiencia">
           <h2>Professional Experience</h2>
 
           <!-- BLW Devs -->
@@ -551,14 +636,18 @@
               <h3>Founder &amp; Full Stack Developer</h3>
               <span class="job-period">2025 – Present</span>
             </div>
-            <p class="company">BLW Devs <span class="contract-type">· Own company</span></p>
+            <p class="company">BLW Devs <span class="contract-type">· Own Company</span></p>
             <p class="job-summary">
-              Founded and lead BLW Devs, a software house focused on agribusiness. Solely responsible for the full product chain of Cultiva.ai — architecture, development, infrastructure and go-to-market — using Go, Flutter and PostgreSQL.
+              Responsible for the product, architecture, and development of Cultiva.ai, a rural management SaaS with a voice AI assistant
+              integrated into EMBRAPA's technical database, currently validating with rural producers.
             </p>
             <ul class="bullets">
-              <li>Engineered conversational AI assistant using OpenAI/Whisper processing <b>30+ agronomic queries per day</b> based on EMBRAPA data, serving 6 rural producers in beta phase.</li>
-              <li>Automated financial reconciliation by building a custom invoice processing module, achieving an <b>80% reduction in data entry errors</b> and saving 40+ operational hours monthly.</li>
-              <li>Shipped end-to-end SaaS product: Android/iOS mobile app with Flutter; backend API with Go and PostgreSQL; landing page and automated deploys via CI/CD with GitHub Actions.</li>
+              <li data-focus="both">Developed an end-to-end SaaS product: Android/iOS mobile app with Flutter, backend API with Go and PostgreSQL,
+                landing page, and automated deployments via CI/CD with GitHub Actions.</li>
+              <li data-focus="backend">Implemented a conversational AI audio assistant with responses based on agronomic data from EMBRAPA.</li>
+              <li data-focus="both">Built modules for crop management, input inventory control, team management, and automatic
+                invoice importation.</li>
+              <li data-focus="backend">Structured CI/CD pipelines to publish apps on Google Play and App Store via GitHub Actions.</li>
             </ul>
           </div>
 
@@ -570,16 +659,21 @@
             </div>
             <p class="company">Autocenter</p>
             <p class="job-summary">
-              Architected and led development of a cross-platform SaaS ecosystem for the automotive segment, guiding a team of 3-5 developers in defining tech stack and product strategy.
+              Worked as a Full Stack developer in a multi-platform SaaS ecosystem for the automotive sector,
+              participating in product, stack, architecture, and strategic partnership definitions alongside leadership.
             </p>
             <ul class="bullets">
-              <li>Delivered 3 simultaneous products (web, customer app, business app) from concept to production in under 18 months, utilizing React.js, Next.js, React Native, NestJS, and PostgreSQL.</li>
-              <li>Implemented ERP module with 20+ features, doubling revenue and reducing service order processing time by <b>60%</b>.</li>
-              <li>Reduced application response time by <b>80%</b> via Redis data caching and SQL query optimization.</li>
-              <li>Achieved <b>85% unit test coverage</b> with Jest and TDD, reducing production regressions.</li>
-              <li>Integrated 3+ REST APIs and external ERPs for legacy system communication via Node.js and NestJS.</li>
-              <li>Boosted organic search visibility with Next.js SSR/SSG, reducing page load time by <b>40%</b> and improving search ranking.</li>
-              <li>Managed sprints and continuous deploys with Scrum, Kanban and CI/CD pipeline via GitHub Actions for a team of 3–5 devs.</li>
+              <li data-focus="both">Designed and implemented the full architecture using React.js, Next.js, React Native,
+                TypeScript, NestJS, PostgreSQL, and Docker.</li>
+              <li data-focus="both">Delivered <b>3 simultaneous products</b> in production: web platform,
+                client app, and business app, adopted by over 10 companies.</li>
+              <li data-focus="both">Developed an ERP featuring over <b>20 features</b> covering service orders, inventory,
+                finance, purchasing, parts quoting, yard management, and income statement reports.</li>
+              <li data-focus="frontend">Reduced application response time by <b>80%</b> through caching with ReactQuery.</li>
+              <li data-focus="both">Achieved <b>85% test coverage</b> with Jest and TDD, mitigating production regressions.</li>
+              <li data-focus="backend">Integrated the platform into the Workmotors ERP via REST APIs using Node.js and NestJS.</li>
+              <li data-focus="frontend">Optimized SEO with Next.js SSR/SSG, leading to improved organic ranking.</li>
+              <li data-focus="both">Led deliveries in an agile environment using Scrum, Kanban, and CI/CD via GitHub Actions within a team of 3 to 5 developers.</li>
             </ul>
           </div>
 
@@ -589,14 +683,22 @@
               <h3>Mobile Developer</h3>
               <span class="job-period">Mar/2025 – Aug/2025</span>
             </div>
-            <p class="company">Movya <span class="contract-type">· Freelance project</span></p>
+            <p class="company">Movya <span class="contract-type">· Freelance Project</span></p>
             <p class="job-summary">
-              Hired as sole developer to design and deliver from scratch a sports community mobile app for iOS and Android, featuring real-time activity tracking, social feed and a gamification system for runners.
+              Acted as the first mobile engineer developing Movya, a ride-hailing and fitness community app for Android and iOS,
+              from scratch up to the store approval phase.
             </p>
             <ul class="bullets">
-              <li>Implemented precision sports tracking using Geolocation and Mapbox GL, achieving a <b>99% GPS accuracy rate</b> while maintaining optimized battery consumption.</li>
-              <li>Orchestrated real-time social engagement features via WebSockets and Socket.io, resulting in near-instantaneous leaderboard updates and push notifications.</li>
-              <li>Streamlined offline data synchronization using WatermelonDB and optimistic updates, reducing UI latency to <b>under 100ms</b> and ensuring 100% functionality in low-connectivity areas.</li>
+              <li data-focus="frontend">Architected the app from scratch using React Native, Expo, and TypeScript, establishing the technical
+                foundation for long-term scalability.</li>
+              <li data-focus="frontend">Implemented real-time sports tracking via Background Location and Mapbox, achieving a
+                <b>1% GPS margin of error</b> with optimized battery consumption.
+              </li>
+              <li data-focus="both">Developed social features utilizing WebSockets and Socket.io: real-time leaderboards and instant
+                notifications.</li>
+              <li data-focus="frontend">Optimized offline synchronization with WatermelonDB and optimistic updates, dropping local latency to
+                <b>under 100ms</b>.</li>
+              <li data-focus="both">Led the testing phase with <b>20 active users</b> recording more than 10km of tracked activity daily.</li>
             </ul>
           </div>
 
@@ -608,12 +710,15 @@
             </div>
             <p class="company">Metrix</p>
             <p class="job-summary">
-              Sole developer responsible for the company's full digital transformation, working end-to-end: requirements gathering, Figma design, development and production deployment.
+              Asset management company 100% focused on cryptocurrencies, processing over 100 million daily datapoints to drive portfolio
+              decisions for engineers, mathematicians, and data scientists.
             </p>
             <ul class="bullets">
-              <li>Delivered the full corporate digital presence in <b>5 months as the sole developer</b>, from Figma prototyping to full production deployment.</li>
-              <li>Engineered a responsive, performance-first frontend with React and TypeScript adhering to <b>WCAG 2.1 guidelines</b>, achieving a Lighthouse score above <b>90</b> in performance and accessibility.</li>
-              <li>Implemented SSR/SSG with Next.js improving Core Web Vitals and increasing organic search engine visibility.</li>
+              <li data-focus="frontend">Delivered the complete institutional website in <b>5 months as the sole developer</b>,
+                ranging from Figma prototyping to production deployment.</li>
+              <li data-focus="frontend">Developed a responsive interface using React.js and TypeScript adhering to best practices in
+                componentization and accessibility.</li>
+              <li data-focus="frontend">Implemented SSR/SSG with Next.js, boosting Core Web Vitals and organic visibility.</li>
             </ul>
           </div>
 
@@ -625,22 +730,24 @@
             </div>
             <p class="company">Allcontece</p>
             <p class="job-summary">
-              Solely responsible for the full product cycle of a fashion e-commerce platform, from architecture design to production launch, working across frontend, backend and product management.
+              E-commerce platform for a virtual fashion catalog, covering frontend, backend, and management from scratch to deployment.
             </p>
             <ul class="bullets">
-              <li>Built fashion e-commerce platform in <b>12 months as solo full stack developer</b>, covering frontend, backend and product management from zero to production.</li>
-              <li>Architected RESTful API with Node.js, Express and MongoDB managing product catalog and real-time order processing with <b>response times under 200ms</b>.</li>
-              <li>Implemented Handlebars + CSS interface reducing initial load time by <b>35%</b> through lazy loading and asset optimization.</li>
+              <li data-focus="frontend">Built interfaces in Figma and implemented them utilizing Handlebars, JavaScript, and CSS.
+              </li>
+              <li data-focus="backend">Developed a RESTful API with Node.js, Express, and MongoDB for catalog management and real-time
+                order processing featuring <b>responses under 200ms</b>.</li>
+              <li data-focus="frontend">Reduced initial loading time by <b>35%</b> via lazy loading and asset optimization.</li>
             </ul>
           </div>
 
         </section>
       </main>
 
-      <!-- ════ SIDEBAR ════ -->
+      <!-- SIDEBAR -->
       <aside>
 
-        <section id="skills">
+        <section id="habilidades">
           <h2>Technical Skills</h2>
 
           <div class="skill-group">
@@ -669,8 +776,11 @@
             <div class="tags">
               <span class="tag">Node.js</span>
               <span class="tag">NestJS</span>
+              <span class="tag">Laravel</span>
               <span class="tag">Express</span>
               <span class="tag">REST API</span>
+              <span class="tag">GraphQL</span>
+              <span class="tag">FastAPI</span>
               <span class="tag">PostgreSQL</span>
               <span class="tag">MySQL</span>
               <span class="tag">MongoDB</span>
@@ -690,11 +800,12 @@
               <span class="tag">Playwright</span>
               <span class="tag">TDD</span>
               <span class="tag">Git</span>
+              <span class="tag">Tailwind</span>
             </div>
           </div>
 
           <div class="skill-group">
-            <div class="skill-label">Other</div>
+            <div class="skill-label">Others</div>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">Golang</span>
@@ -702,40 +813,42 @@
               <span class="tag">Socket.io</span>
               <span class="tag">Scrum</span>
               <span class="tag">Kanban</span>
+              <span class="tag">AWS</span>
+              <span class="tag">Firebase</span>
             </div>
           </div>
         </section>
 
-
         <section>
           <h2>Languages</h2>
           <div class="lang"><span>Portuguese</span><span class="lang-level">Native</span></div>
-          <div class="lang"><span>English</span><span class="lang-level">Intermediate · fluent technical reading</span>
-          </div>
+          <div class="lang"><span>English</span><span class="lang-level">Upper Intermediate (B2)</span></div>
         </section>
 
-        <section id="education">
-          <h2>Academic Education</h2>
+        <section id="formacao">
+          <h2>Education</h2>
           <div class="edu-name">Computer Engineering</div>
           <div class="edu-sub">UNIVASF · Sep/2019 – Feb/2026</div>
         </section>
 
-        <section id="certifications">
+        <section id="certificacoes">
           <h2>Certifications</h2>
-          <div class="cert-name">Node.js From Zero to Mastery</div>
-          <div class="cert-meta">Udemy · 37.5h · 2022</div>
-          <div class="cert-name">Front-End Fundamentals</div>
-          <div class="cert-meta">DIO · 25h · 2024</div>
+          <div class="cert-name">NestJS for REST API with TypeORM, JWT Auth and Testing</div>
+          <div class="cert-meta">Udemy · 24h · 2026</div>
           <div class="cert-name">Text Recognition with OCR and Python</div>
           <div class="cert-meta">Udemy · 14h · 2025</div>
+          <div class="cert-name">Front-End Fundamentals</div>
+          <div class="cert-meta">DIO · 25h · 2024</div>
+          <div class="cert-name">Node.js from Scratch to Mastery</div>
+          <div class="cert-meta">Udemy · 37.5h · 2022</div>
         </section>
 
         <section>
           <h2>Entrepreneurship</h2>
           <div class="biz-name">BLW Devs</div>
           <div class="biz-role">Founder &amp; CTO</div>
-          <p class="biz-desc">Software house for agribusiness. Product: Cultiva.ai — rural management with voice AI
-            integrated with EMBRAPA.</p>
+          <p class="biz-desc">Agribusiness software house. Product: Cultiva.ai — rural management with voice AI
+            integrated into EMBRAPA.</p>
           <a class="biz-link" href="https://cultivai.blwdevs.com.br">cultivai.blwdevs.com.br</a>
         </section>
 
@@ -747,54 +860,76 @@
       <p>
         React · React.js · Next.js · React Native · Expo · Flutter · TypeScript · JavaScript · ES6+
         · Node.js · NestJS · Express · REST API · GraphQL · PostgreSQL · MySQL · MongoDB · Redis
-        · Prisma · TypeORM · Docker · Kubernetes · CI/CD · GitHub Actions · Git · Jest · TDD
+        · Prisma · TypeORM · ReactQuery · Docker · Kubernetes · CI/CD · GitHub Actions · Git · Jest · TDD
         · Playwright · Unit Testing · E2E Testing · Python · Golang · WebSockets · Socket.io
         · Tailwind CSS · Styled Components · Figma · SEO · SSR · SSG · SaaS · ERP · Agile · Scrum
-        · Kanban · Software Architecture · Microservices · Mobile Android · Mobile iOS
+        · Kanban · Software Architecture · Microservices · Android Mobile · iOS Mobile
         · Full Stack Developer · Frontend Developer · Backend Developer · Mobile Developer
       </p>
     </footer>
-
   </div>
-  <script>
-    function downloadATS() {
-      function esc(s) {
-        return String(s)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;');
-      }
 
-      function norm(el) {
-        return el ? el.textContent.replace(/\s+/g, ' ').trim() : '';
-      }
+  <script>
+    function setFocus(focus) {
+      const subtitleVariants = {
+        fullstack: 'Software Engineer · Mid-Level Full Stack Developer',
+        frontend: 'Software Engineer · Mid-Level Frontend Developer',
+        backend: 'Software Engineer · Mid-Level Backend Developer'
+      };
+
+      document.body.classList.remove('focus-frontend', 'focus-backend');
+      if (focus !== 'fullstack') document.body.classList.add('focus-' + focus);
+
+      document.querySelector('.subtitle').textContent = subtitleVariants[focus];
+
+      document.querySelectorAll('.focus-btn').forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.focus === focus);
+      });
+
+      document.querySelectorAll('.job').forEach(function (job) {
+        const bullets = job.querySelectorAll('.bullets li');
+        if (!bullets.length) return;
+        const anyVisible = Array.from(bullets).some(function (li) {
+          return getComputedStyle(li).display !== 'none';
+        });
+        job.style.display = anyVisible ? '' : 'none';
+      });
+    }
+
+    function downloadATS() {
+      function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+      function norm(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
 
       const name = norm(document.querySelector('h1'));
       const subtitle = norm(document.querySelector('.subtitle'));
-
       const addr = document.querySelector('address');
       const spans = addr ? addr.querySelectorAll('span:not(.sep)') : [];
       const phone = spans.length > 0 ? norm(spans[0]) : '';
-
       const links = addr ? addr.querySelectorAll('a') : [];
       const email = links.length > 0 ? norm(links[0]) : '';
       const linkedin = links.length > 1 ? links[1].href : '';
       const github = links.length > 2 ? links[2].href : '';
       const website = links.length > 3 ? norm(links[3]) : '';
 
-      const profile = norm(document.querySelector('#profile p') || document.querySelector('#perfil p'));
-
-      const jobs = Array.from(document.querySelectorAll('.job')).map(function (job) {
-        return {
-          title: norm(job.querySelector('h3')),
-          period: norm(job.querySelector('.job-period')),
-          company: norm(job.querySelector('.company')),
-          summary: norm(job.querySelector('.job-summary')),
-          bullets: Array.from(job.querySelectorAll('.bullets li')).map(function (li) {
-            return norm(li);
-          })
-        };
+      const profileEls = document.querySelectorAll('#perfil [data-variant]');
+      const visibleProfile = Array.from(profileEls).find(function (el) {
+        return getComputedStyle(el).display !== 'none';
       });
+      const profile = norm(visibleProfile || document.querySelector('#perfil p'));
+
+      const jobs = Array.from(document.querySelectorAll('.job'))
+        .filter(function (job) { return getComputedStyle(job).display !== 'none'; })
+        .map(function (job) {
+          return {
+            title: norm(job.querySelector('h3')),
+            period: norm(job.querySelector('.job-period')),
+            company: norm(job.querySelector('.company')),
+            summary: norm(job.querySelector('.job-summary')),
+            bullets: Array.from(job.querySelectorAll('.bullets li'))
+              .filter(function (li) { return getComputedStyle(li).display !== 'none'; })
+              .map(function (li) { return norm(li); })
+          };
+        });
 
       const skillGroups = Array.from(document.querySelectorAll('.skill-group')).map(function (g) {
         return {
@@ -803,14 +938,9 @@
         };
       });
 
-      const softSkills = Array.from(document.querySelectorAll('ul.soft li')).map(norm);
-
       const langs = Array.from(document.querySelectorAll('.lang')).map(function (l) {
         const spans = l.querySelectorAll('span');
-        if (spans.length >= 2) {
-          return norm(spans[0]) + ': ' + norm(spans[1]);
-        }
-        return norm(l);
+        return spans.length >= 2 ? norm(spans[0]) + ': ' + norm(spans[1]) : norm(l);
       });
 
       const eduName = norm(document.querySelector('.edu-name'));
@@ -838,62 +968,36 @@
           + '<p class="job-company">' + esc(j.company) + '</p>'
           + '<p class="job-period">' + esc(j.period) + '</p>'
           + (j.summary ? '<p class="job-summary">' + esc(j.summary) + '</p>' : '')
-          + bulletsHtml
-          + '</div>';
+          + bulletsHtml + '</div>';
       }).join('');
 
       const skillsHtml = skillGroups.map(function (g) {
         return '<p><strong>' + esc(g.label) + ':</strong> ' + g.tags.map(esc).join(', ') + '</p>';
       }).join('');
 
-      const softSkillsHtml = softSkills.length
-        ? '<h2>Soft Skills</h2>\n<p>' + esc(softSkills.join(', ')) + '</p>\n'
-        : '';
-
-      const html = '<!DOCTYPE html>\n'
-        + '<html lang="en">\n'
-        + '<head>\n'
-        + '<meta charset="UTF-8">\n'
-        + '<title>' + esc(name) + ' - ATS Resume</title>\n'
-        + '<style>\n'
-        + '* { margin: 0; padding: 0; box-sizing: border-box; }\n'
+      const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
+        + '<title>' + esc(name) + ' - Resume</title>\n'
+        + '<style>\n* { margin: 0; padding: 0; box-sizing: border-box; }\n'
         + 'body { font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.4; color: #000; padding: 15mm; }\n'
         + 'h1 { font-size: 18pt; margin-bottom: 2pt; }\n'
         + '.subtitle { font-size: 12pt; font-weight: bold; margin-bottom: 2pt; }\n'
         + '.contact { font-size: 10pt; margin-bottom: 12pt; color: #333; }\n'
         + 'h2 { font-size: 12pt; text-transform: uppercase; border-bottom: 1px solid #000; margin: 14pt 0 6pt; }\n'
-        + 'p { margin-bottom: 4pt; }\n'
-        + 'ul { list-style: none; margin-bottom: 8pt; }\n'
-        + 'li { margin-bottom: 2pt; }\n'
-        + '.job-block { margin-bottom: 10pt; }\n'
-        + '.job-title { font-weight: bold; }\n'
-        + '.job-company { font-style: italic; }\n'
-        + '</style>\n'
-        + '</head>\n'
-        + '<body>\n'
+        + 'p { margin-bottom: 4pt; }\nul { list-style: none; margin-bottom: 8pt; }\nli { margin-bottom: 2pt; }\n'
+        + '.job-block { margin-bottom: 10pt; }\n.job-title { font-weight: bold; }\n.job-company { font-style: italic; }\n'
+        + '</style>\n</head>\n<body>\n'
         + '<h1>' + esc(name) + '</h1>\n'
         + '<p class="subtitle">' + esc(subtitle) + '</p>\n'
         + '<p class="contact">' + contactLine + '</p>\n'
-        + '<h2>Professional Profile</h2>\n'
-        + '<p>' + esc(profile) + '</p>\n'
-        + '<h2>Professional Experience</h2>\n'
-        + jobsHtml
-        + '<h2>Technical Skills</h2>\n'
-        + skillsHtml
-        + softSkillsHtml
-        + '<h2>Languages</h2>\n'
-        + langs.map(function (l) { return '<p>' + esc(l) + '</p>'; }).join('')
-        + '<h2>Education</h2>\n'
-        + '<p><strong>' + esc(eduName) + '</strong></p>\n'
-        + '<p>' + esc(eduSub) + '</p>\n'
-        + '<h2>Certifications</h2>\n'
-        + certs.map(function (c) { return '<p>' + esc(c) + '</p>'; }).join('')
-        + (bizName ? '<h2>Entrepreneurship</h2>\n'
-        + '<p><strong>' + esc(bizName) + '</strong> - ' + esc(bizRole) + '</p>\n'
-        + '<p>' + esc(bizDesc) + '</p>\n'
-        + '<p>' + esc(bizLink) + '</p>\n' : '')
-        + '</body>\n'
-        + '</html>';
+        + '<h2>Professional Profile</h2>\n<p>' + esc(profile) + '</p>\n'
+        + '<h2>Professional Experience</h2>\n' + jobsHtml
+        + '<h2>Technical Skills</h2>\n' + skillsHtml
+        + '<h2>Languages</h2>\n' + langs.map(function (l) { return '<p>' + esc(l) + '</p>'; }).join('')
+        + '<h2>Education</h2>\n<p><strong>' + esc(eduName) + '</strong></p>\n<p>' + esc(eduSub) + '</p>\n'
+        + '<h2>Certifications</h2>\n' + certs.map(function (c) { return '<p>' + esc(c) + '</p>'; }).join('')
+        + (bizName ? '<h2>Entrepreneurship</h2>\n<p><strong>' + esc(bizName) + '</strong> - ' + esc(bizRole) + '</p>\n'
+          + '<p>' + esc(bizDesc) + '</p>\n<p>' + esc(bizLink) + '</p>\n' : '')
+        + '</body>\n</html>';
 
       const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
       const blobUrl = URL.createObjectURL(blob);
@@ -906,17 +1010,15 @@
         });
       } else {
         URL.revokeObjectURL(blobUrl);
-        alert('Please allow pop-ups for this site to generate the PDF.');
+        alert('Please allow pop-ups to generate the PDF.');
       }
     }
 
-    // Auto-trigger ATS download when opened via ?ats=1
     if (new URLSearchParams(window.location.search).get('ats') === '1') {
-      window.addEventListener('load', function () {
-        setTimeout(downloadATS, 300);
-      });
+      window.addEventListener('load', function () { setTimeout(downloadATS, 300); });
     }
   </script>
+
 </body>
 
 </html>
